@@ -11,29 +11,13 @@
 </div>
 
 {{-- Requirement 5: Data Dinamis + @foreach --}}
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4 text-indigo-800">📋 Teknologi yang Digunakan</h2>
-        <ul class="list-disc list-inside space-y-2 text-gray-700">
-            @foreach ($items as $item)
-                <li class="pl-2">{{ $item }}</li>
-            @endforeach
-        </ul>
-    </div>
-
-    {{-- Requirement 6: Model & Database Data --}}
-    <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-xl font-semibold mb-4 text-indigo-800">🗄️ Data dari Database (Model Post)</h2>
-        @forelse ($posts as $post)
-            <div class="border-l-4 border-indigo-500 pl-3 py-1 mb-3">
-                <h3 class="font-bold text-gray-800">{{ $post->title }}</h3>
-                <p class="text-sm text-gray-600 mt-1">{{ $post->body }}</p>
-                <span class="text-xs text-indigo-600">Penulis: {{ $post->author }}</span>
-            </div>
-        @empty
-            <p class="text-sm text-gray-500">Belum ada post di database MySQL.</p>
-        @endforelse
-    </div>
+<div class="bg-white rounded-xl shadow p-6">
+    <h2 class="text-xl font-semibold mb-4">📋 Teknologi yang Digunakan</h2>
+    <ul class="list-disc list-inside space-y-2 text-gray-700">
+        @foreach ($items as $item)
+            <li class="pl-2">{{ $item }}</li>
+        @endforeach
+    </ul>
 </div>
 
 {{-- Quick Links --}}

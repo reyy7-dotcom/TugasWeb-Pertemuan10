@@ -1,58 +1,201 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📘 TugasWeb-P9-LaravelSetup
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> **Tugas Rutin 9** — Setup Laravel  
+> Mata Kuliah: Pemrograman Web
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📋 Deskripsi
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Project Laravel yang dibuat untuk memenuhi Tugas Rutin 9. Project ini mendemonstrasikan:
+- Instalasi dan konfigurasi Laravel
+- Koneksi database MySQL
+- Arsitektur MVC (Model-View-Controller)
+- Blade templating dengan data dinamis
+- Route dan Controller
+- Styling menggunakan Tailwind CSS CDN
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ⚙️ Requirement
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+| No | Requirement | Status |
+|----|-------------|--------|
+| 1  | Install Composer & buat project Laravel | ✅ |
+| 2  | Konfigurasi database MySQL di `.env` | ✅ |
+| 3  | Artisan serve & welcome page | ✅ |
+| 4  | 3 route custom → Blade View | ✅ |
+| 5  | View dengan data dinamis | ✅ |
+| 6  | `make:controller` & `make:model -m` | ✅ |
+| 7  | README.md | ✅ |
+| 8  | Repository siap | ✅ |
+| **Bonus** | Tailwind CSS CDN + Route `/hello/{nama}` | ✅ |
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 🚀 Instalasi
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <url-repository>
+cd TugasWeb-P9-LaravelSetup
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Install Dependencies
 
-## Contributing
+```bash
+composer install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Konfigurasi Environment
 
-## Code of Conduct
+Salin file `.env.example` menjadi `.env`:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+Edit `.env` dan sesuaikan konfigurasi database:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=tugas_rutin_9
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## License
+### 4. Generate Application Key
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan key:generate
+```
+
+### 5. Buat Database
+
+Buat database di **phpMyAdmin** atau melalui terminal MySQL:
+
+```sql
+CREATE DATABASE tugas_rutin_9;
+```
+
+### 6. Jalankan Migration
+
+```bash
+php artisan migrate
+```
+
+### 7. Jalankan Server
+
+```bash
+php artisan serve
+```
+
+Buka browser di: **http://127.0.0.1:8000**
+
+---
+
+## 📁 Struktur Folder Utama
+
+```
+tugas pemrograman_TR9/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       └── PageController.php      ← Controller utama
+│   └── Models/
+│       └── Post.php                    ← Model Post (Eloquent)
+│
+├── database/
+│   └── migrations/
+│       ├── ..._create_users_table.php
+│       ├── ..._create_cache_table.php
+│       ├── ..._create_jobs_table.php
+│       └── ..._create_posts_table.php  ← Migration model Post
+│
+├── resources/
+│   └── views/
+│       ├── layouts/
+│       │   └── app.blade.php           ← Layout utama (Tailwind CDN)
+│       ├── home.blade.php              ← Halaman Home (data dinamis)
+│       ├── about.blade.php             ← Halaman About
+│       ├── contact.blade.php           ← Halaman Contact
+│       └── hello.blade.php             ← Bonus: /hello/{nama}
+│
+├── routes/
+│   └── web.php                         ← Definisi route
+│
+├── .env                                ← Konfigurasi environment (TIDAK di-commit)
+├── .env.example                        ← Template environment
+├── composer.json                       ← Dependency PHP
+└── README.md                           ← Dokumentasi ini
+```
+
+---
+
+## 🏗 Penjelasan MVC
+
+### Model (`app/Models/`)
+Representasi data dan interaksi dengan database menggunakan **Eloquent ORM**.
+- `Post.php` — Model untuk tabel `posts` dengan kolom `title`, `body`, `author`.
+
+### View (`resources/views/`)
+Template HTML menggunakan **Blade Templating Engine**.
+- `layouts/app.blade.php` — Layout utama dengan navbar & footer.
+- `home.blade.php` — Menampilkan data dinamis dari Controller menggunakan `{{ $variable }}` dan `@foreach`.
+- `about.blade.php` — Informasi project.
+- `contact.blade.php` — Informasi kontak developer.
+- `hello.blade.php` — Bonus: menampilkan nama dari route parameter.
+
+### Controller (`app/Http/Controllers/`)
+Logika bisnis yang menghubungkan Model dan View.
+- `PageController.php` — Menangani 4 route:
+  - `home()` → mengirim data dinamis ke view
+  - `about()` → halaman about
+  - `contact()` → halaman contact
+  - `hello($nama)` → bonus route parameter
+
+---
+
+## 🛣 Routes
+
+| Method | URI | Controller Method | Keterangan |
+|--------|-----|-------------------|------------|
+| GET | `/` | `PageController@home` | Halaman utama + data dinamis |
+| GET | `/about` | `PageController@about` | Halaman about |
+| GET | `/contact` | `PageController@contact` | Halaman contact |
+| GET | `/hello/{nama}` | `PageController@hello` | Bonus: route parameter |
+
+---
+
+## 🎨 Bonus
+
+### Tailwind CSS CDN
+Seluruh halaman menggunakan styling dari Tailwind CSS via CDN (`<script src="https://cdn.tailwindcss.com"></script>`).
+
+### Route Parameter `/hello/{nama}`
+Contoh: buka `http://127.0.0.1:8000/hello/Reyhan` → menampilkan **"Halo, Reyhan!"**
+
+---
+
+## 📝 Command yang Digunakan
+
+```bash
+# Instalasi
+composer create-project laravel/laravel .
+
+# Artisan
+php artisan make:controller PageController
+php artisan make:model Post -m
+php artisan migrate
+php artisan config:clear
+php artisan serve
+```
+
+---
+
+## 📄 Lisensi
+
+Project ini dibuat untuk keperluan akademik — Tugas Rutin 9.

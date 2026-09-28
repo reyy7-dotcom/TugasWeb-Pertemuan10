@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,6 +12,8 @@ class PageController extends Controller
      */
     public function home()
     {
+        $posts = Post::latest()->get();
+
         $data = [
             'title'       => 'Laravel Setup — Tugas Rutin 9',
             'description' => 'Project Laravel untuk memenuhi Tugas Rutin 9 mata kuliah Pemrograman Web.',
@@ -21,6 +24,7 @@ class PageController extends Controller
                 'Eloquent ORM',
                 'Artisan CLI',
             ],
+            'posts'       => $posts,
         ];
 
         return view('home', $data);
